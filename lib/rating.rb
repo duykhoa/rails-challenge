@@ -1,4 +1,5 @@
 class Rating
+  class ParamerterException < StandardError;end
   def initialize(options = {})
     @rating_model_klass = options[:rating_model_klass] || Object
   end
@@ -9,7 +10,7 @@ class Rating
     ratable_id = args[:ratable_id]
     user_id = args[:user_id]
 
-    raise StandardError, "#ratable_id or #ratable_type is missing" unless ratable_id && ratable_type && user_id
+    raise ParamerterException, "#ratable_id or #ratable_type is missing" unless ratable_id && ratable_type && user_id
 
     @rating_model_klass.create(
       ratable_id: ratable_id,
