@@ -8,6 +8,7 @@ class OrderFeedbackController < ApplicationController
   end
 
   private
+
   def find_order(order_id)
     # Will return an Order Model or nil
     # feel free to implement this with ActiveRecord if this is insufficient
