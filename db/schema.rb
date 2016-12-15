@@ -11,6 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20161215015926) do
+
+  create_table "meals", force: :cascade do |t|
+    t.string   "meal_name"
+    t.integer  "ratable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "meals", ["ratable_id"], name: "index_meals_on_ratable_id"
+
+  create_table "rates", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "ratable_id"
+    t.string   "ratable_type"
+    t.integer  "point"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "rates", ["ratable_type", "ratable_id"], name: "index_rates_on_ratable_type_and_ratable_id"
 
 end
