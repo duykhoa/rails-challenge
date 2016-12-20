@@ -18,5 +18,6 @@ $(document).ready(function(){
 
   $("#logout").on('click', function(){
     Cookies.remove("user_id");
+    window.location("/session/new")
   })
 })
