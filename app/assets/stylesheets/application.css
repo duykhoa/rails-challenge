@@ -12,4 +12,5 @@
  *
  *= require_tree .
  *= require_self
+ *= require kartik-v-bootstrap-star-rating-b2bf4e4/css/star-rating.css
  */
