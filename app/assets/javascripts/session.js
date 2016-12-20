@@ -12,6 +12,11 @@ $(document).ready(function(){
 
     if (user_id !== null) {
       Cookies.set("user_id", user_id, { expires: 1 });
+      history.go(-1);
     }
+  })
+
+  $("#logout").on('click', function(){
+    Cookies.remove("user_id");
   })
 })
