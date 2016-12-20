@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'order/:id/feedback' => 'order_feedback#new'
+  get 'session/new' => 'sessions#new'
 
   namespace :api do
     namespace :v1 do
