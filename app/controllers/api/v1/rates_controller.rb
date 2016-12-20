@@ -13,7 +13,7 @@ class Api::V1::RatesController < ApiController
 
     respond_to do |format|
       format.json {
-        render json: { status: status, message: msg }
+        render json: { status: status, message: msg }, status: status
       }
     end
   end
@@ -22,7 +22,8 @@ class Api::V1::RatesController < ApiController
     {
       user_id: params["user_id"],
       ratable_id: params["ratable_id"],
-      ratable_type: params["ratable_type"]
+      ratable_type: params["ratable_type"],
+      point: params["point"]
     }
   end
 end

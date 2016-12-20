@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require kartik-v-bootstrap-star-rating-b2bf4e4/js/star-rating
