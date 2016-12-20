@@ -9,7 +9,6 @@ class Rating
     ratable_type = args[:ratable_type]
     ratable_id = args[:ratable_id]
     user_id = args[:user_id]
-    puts args.inspect
 
     raise ParamerterException, "#ratable_id or #ratable_type is missing" unless ratable_id && ratable_type && user_id
 
