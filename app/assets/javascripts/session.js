@@ -12,12 +12,19 @@ $(document).ready(function(){
 
     if (user_id !== null) {
       Cookies.set("user_id", user_id, { expires: 1 });
-      history.go(-1);
+      redirect_path = Cookies.get("after_login_path");
+
+      if (redirect_path !== null) {
+        window.location.href = redirect_path;
+      }
+      else {
+        history.go(-1);
+      }
     }
   })
 
   $("#logout").on('click', function(){
     Cookies.remove("user_id");
-    window.location("/session/new")
+    window.location.href = "/session/new"
   })
 })

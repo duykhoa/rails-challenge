@@ -12,7 +12,10 @@ class OrderFeedbackController < ApplicationController
   private
 
   def signed_in?
-    redirect_to new_session_path unless cookies[:user_id]
+   if !cookies[:user_id]
+     cookies[:after_login_path] = request.original_url
+     redirect_to new_session_path
+   end
   end
 
   def find_order(order_id)
