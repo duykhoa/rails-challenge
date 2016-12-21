@@ -3,18 +3,15 @@ class RatesController < ApplicationController
 
   def create
     rating = Rating.new(rating_model_klass: Rate)
-    #rating.rate(rate_params)
+    rating.rate(rate_params)
 
     redirect_to order_feedback_path(params[:order_id])
   end
 
   def rate_params
     {
-      order_id: order_id,
-      user_id: current_user.id,
-      ratable_id: params["ratable_id"],
-      ratable_type: params["ratable_type"],
-      point: params["point"]
+      order_item: params[:order_item],
+      delivery: params[:delivery]
     }
   end
 
