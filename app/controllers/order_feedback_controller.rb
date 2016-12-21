@@ -3,11 +3,20 @@ Order = Struct.new(:id, :date, :order_items)
 OrderItem = Struct.new(:id, :meal_name)
 
 class OrderFeedbackController < ApplicationController
+  before_action :signed_in?
+
   def new
     @order = find_order(params[:id])
   end
 
   private
+
+  def signed_in?
+   if !cookies[:user_id]
+     cookies[:after_login_path] = request.original_url
+     redirect_to new_session_path
+   end
+  end
 
   def find_order(order_id)
     # Will return an Order Model or nil

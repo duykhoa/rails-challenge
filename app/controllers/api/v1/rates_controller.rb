@@ -20,7 +20,7 @@ class Api::V1::RatesController < ApiController
 
   def rate_params
     {
-      user_id: params["user_id"],
+      user_id: cookies[:user_id],
       ratable_id: params["ratable_id"],
       ratable_type: params["ratable_type"],
       point: params["point"]
