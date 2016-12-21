@@ -3,9 +3,9 @@
     Your feedback for Order <%= @order&.id %>
   </h1>
   <div>
-    <% @meals.each do |meal| -%>
+    <% @order_items.each do |order_item| -%>
       <div>
-        <%= meal.meal_name %>
+        <%= order_item.meal_name%>
         <div>
           <input
             id="input-1" name="input-1" class="rating rating-loading"

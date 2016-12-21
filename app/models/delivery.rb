@@ -1,3 +1,3 @@
 class Delivery < ActiveRecord::Base
-  has_many :rates, as: :ratable
+  has_one :rate, as: :ratable
 end
