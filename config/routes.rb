@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'order/:id/feedback' => 'order_feedback#new'
   get 'session/new' => 'sessions#new', as: :new_session
 
