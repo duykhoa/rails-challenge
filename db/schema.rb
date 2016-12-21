@@ -30,7 +30,8 @@ ActiveRecord::Schema.define(version: 20161221073023) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer "qty"
-    t.integer "meals_id"
+    t.integer "meal_id"
+    t.integer "order_id"
   end
 
   create_table "orders", force: :cascade do |t|

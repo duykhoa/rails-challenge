@@ -6,9 +6,9 @@ class OrderFeedbackController < ApplicationController
     @delivery = @order.delivery
 
     if @order
-      @meals = @order.meals
+      @order_items = @order.order_items
     else
-      @meals = []
+      @order_items = []
     end
   end
 
