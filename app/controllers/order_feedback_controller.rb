@@ -3,6 +3,7 @@ class OrderFeedbackController < ApplicationController
 
   def new
     @order = Order.find_by_id(params[:id])
+    @delivery = @order.delivery
 
     if @order
       @meals = @order.meals

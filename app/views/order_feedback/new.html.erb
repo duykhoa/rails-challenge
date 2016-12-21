@@ -17,6 +17,16 @@
       </div>
     <% end -%>
   </div>
+
+  <div>
+    Delivery service
+    <input
+      id="input-1" name="input-1" class="rating rating-loading"
+      data-min="0" data-max="5" data-step="1" value=2
+      data-show-caption=false data-show-clear=false
+      data-ratable_id="<%= @delivery.id %>" data-ratable_type="delivery"
+    >
+  </div>
 </div>
 
 <a href="#" id="logout">Logout</a>
