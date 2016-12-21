@@ -8,6 +8,8 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'jquery-rails'
 
+gem 'devise'
+
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.5'

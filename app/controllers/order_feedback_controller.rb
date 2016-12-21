@@ -1,5 +1,5 @@
 class OrderFeedbackController < ApplicationController
-  before_action :signed_in?
+  before_action :authenticate_user!
 
   def new
     @order = Order.find_by_id(params[:id])
@@ -13,11 +13,4 @@ class OrderFeedbackController < ApplicationController
   end
 
   private
-
-  def signed_in?
-   if !cookies[:user_id]
-     cookies[:after_login_path] = request.original_url
-     redirect_to new_session_path
-   end
-  end
 end
