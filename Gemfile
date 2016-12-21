@@ -13,6 +13,7 @@ gem 'devise'
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.5'
+  gem 'byebug'
 end
 
 group :development do
