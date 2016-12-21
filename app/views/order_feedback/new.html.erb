@@ -1,36 +1,30 @@
 <div>
   <h1>
-    Your feedback for Order <%= @order.id %>
+    Your feedback for Order <%= @order&.id %>
   </h1>
   <div>
-    <% @order.order_items.each do |order_item| -%>
+    <% @meals.each do |meal| -%>
       <div>
-        <%= order_item.meal_name %>
-        <input type="radio" name="feedback-#{order_item.id}" />
-        <input type="radio" name="feedback-#{order_item.id}" />
-        <input type="radio" name="feedback-#{order_item.id}" />
-        <input type="radio" name="feedback-#{order_item.id}" />
-        <input type="radio" name="feedback-#{order_item.id}" />
+        <%= meal.meal_name %>
+        <div>
+          <input
+            id="input-1" name="input-1" class="rating rating-loading"
+            data-min="0" data-max="5" data-step="1" value=2
+            data-show-caption=false data-show-clear=false
+            data-ratable_id=1 data-ratable_type="meal"
+          >
+        </div>
       </div>
     <% end -%>
-
-    <input type="submit" value="Submit" />
-
   </div>
 
   <div>
+    Delivery service
     <input
       id="input-1" name="input-1" class="rating rating-loading"
       data-min="0" data-max="5" data-step="1" value=2
       data-show-caption=false data-show-clear=false
-      data-ratable_id=1 data-ratable_type="meal"
-    >
-
-    <input
-      id="input-2" name="input-2" class="rating rating-loading"
-      data-min="0" data-max="5" data-step="1" value=2
-      data-show-caption=false data-show-clear=false
-      data-ratable_id=4 data-ratable_type="meal"
+      data-ratable_id="<%= @delivery.id %>" data-ratable_type="delivery"
     >
   </div>
 </div>
