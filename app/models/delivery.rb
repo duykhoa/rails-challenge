@@ -1,5 +1,6 @@
 class Delivery < ActiveRecord::Base
   has_many :rates, as: :ratable
+  has_one :comment, as: :commentable
 
   def self.update_rate_point
     sql = <<-SQL
