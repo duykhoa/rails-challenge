@@ -1,0 +1,26 @@
+<% @order_items.each do |order_item| -%>
+  <div>
+    <%= order_item.meal_name%>
+    Quantity: <%= order_item.qty%>
+    <div>
+      <input
+        name="order_item[<%=order_item.id%>]" class="rating rating-loading"
+        data-min="0" data-max="5" data-step="1" value=2
+        data-show-caption=false data-show-clear=false
+        data-ratable_id=1 data-ratable_type="order_item"
+        data-display-only="<%= !@user_ratable %>"
+      >
+    </div>
+  </div>
+<% end -%>
+
+<div>
+  Delivery service
+  <input
+    name="delivery[<%= @delivery.id%>]" class="rating rating-loading"
+    data-min="0" data-max="5" data-step="1" value=2
+    data-show-caption=false data-show-clear=false
+    data-ratable_id="<%= @delivery.id %>" data-ratable_type="delivery"
+    data-display-only="<%= !@user_ratable %>"
+  >
+</div>

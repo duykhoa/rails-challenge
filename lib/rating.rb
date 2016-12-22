@@ -1,22 +1,20 @@
 class Rating
   class ParamerterException < StandardError;end
+
   def initialize(options = {})
     @rating_model_klass = options[:rating_model_klass] || Object
   end
 
   def rate(args = {})
-    point = args[:point] || 1
-    ratable_type = args[:ratable_type]
-    ratable_id = args[:ratable_id]
-    user_id = args[:user_id]
+    delivery = args[:delivery]
+    order_item = args[:order_item]
 
-    raise ParamerterException, "#ratable_id or #ratable_type is missing" unless ratable_id && ratable_type && user_id
+    delivery.each do |k,v|
+      @rating_model_klass.create(ratable_id: k, ratable_type: "delivery", point: v)
+    end
 
-    @rating_model_klass.create(
-      ratable_id: ratable_id,
-      ratable_type: ratable_type,
-      user_id: user_id,
-      point: point
-    )
+    order_item.each do |k,v|
+      @rating_model_klass.create(ratable_id: k, ratable_type: "order_item", point: v)
+    end
   end
 end
