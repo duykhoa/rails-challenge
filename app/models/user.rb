@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
     r[0][:result] == "true"
   end
 
+  def own?(order_id)
+    !!self.orders.find_by_id(order_id)
+  end
+
   private
 
   def ratable_sql(order_id, user_id)
