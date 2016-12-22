@@ -10,9 +10,26 @@
         data-ratable_id=1 data-ratable_type="order_item"
         data-display-only="<%= !@user_ratable %>"
       >
+
+      <% if order_item.comment %>
+        <div>
+          Comment:
+          <%= order_item.comment.content %>
+        </div>
+      <% end %>
+
+      <% if !order_item.comment && @user_ratable %>
+        <div class="form-group">
+          Comment:
+          <input
+            name="comment[order_item][<%=order_item.id%>]"
+            class="form-control"
+          />
+        </div>
+      <%end%>
     </div>
   </div>
-<% end -%>
+<% end %>
 
 <div>
   Delivery service
@@ -23,4 +40,21 @@
     data-ratable_id="<%= @delivery.id %>" data-ratable_type="delivery"
     data-display-only="<%= !@user_ratable %>"
   >
+
+  <% if @delivery.comment %>
+    <div>
+      Comment:
+      <%= @delivery.comment.content %>
+    </div>
+  <% end %>
+
+  <% if !@delivery.comment && @user_ratable %>
+    <div class="form-group">
+      Comment:
+      <input
+        name="comment[delivery][<%=@delivery.id%>]"
+        class="form-control"
+      />
+    </div>
+  <%end%>
 </div>
