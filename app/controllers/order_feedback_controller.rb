@@ -11,8 +11,6 @@ class OrderFeedbackController < ApplicationController
       @order_items = []
     end
 
-    @user_ratable = current_user.ratable?(@order.id)
+    @user_ratable = current_user.ratable?(@order.id, current_user.id)
   end
-
-  private
 end
