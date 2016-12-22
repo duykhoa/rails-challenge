@@ -54,14 +54,12 @@ class Processor
   end
 
   def register_signal
-    lambda do
-      trap "INT" do
-        shutdown
-      end
+    trap "INT" do
+      shutdown
+    end
 
-      trap "TERM" do
-        shutdown
-      end
+    trap "TERM" do
+      shutdown
     end
   end
 
