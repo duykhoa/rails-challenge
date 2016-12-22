@@ -4,7 +4,6 @@ class Processor
   def initialize(options = {})
     @daemon = options[:daemon] || false
     @fork_per_job = options[:fork_per_job] || false
-    prehooks << register_signal
   end
 
   def add_job(job)
@@ -16,6 +15,7 @@ class Processor
   end
 
   def start
+    register_signal
     run { execute_jobs }
   end
 
@@ -37,7 +37,7 @@ class Processor
     loop do
       break if @shutdown
 
-      block.call unless block
+      block.call if block
       sleep INTERVAL_TIME
     end
   end

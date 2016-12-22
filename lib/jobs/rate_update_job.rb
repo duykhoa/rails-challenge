@@ -1,4 +1,4 @@
-class RateUpdatingJob
+class RateUpdateJob
   PERRIOD = 1.minute.freeze
 
   def initialize(options = {})
@@ -11,7 +11,8 @@ class RateUpdatingJob
     @last_run_at
   end
 
-  def last_run_at=(time) @last_run_at = time
+  def last_run_at=(time)
+    @last_run_at = time
   end
 
   def perform
@@ -35,11 +36,11 @@ class RateUpdatingJob
   end
 
   def update_meal_rate
-    @meal_repository.update_rate
+    @meal_repository.update_rate_point
   end
 
   def update_deliver_rate
-    @delivery_repository.update_rate
+    @delivery_repository.update_rate_point
   end
 
   def before_run_action
