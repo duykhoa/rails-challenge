@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
       inner join order_items oi on oi.id = r.ratable_id and r.ratable_type = "order_item"
       inner join orders ord on oi.order_id = ord.id
       inner join users u on u.id = ord.user_id
-      where ord.id = #{order_id} and u.id = ord.user_id
+      where ord.id = #{order_id} and ord.user_id = #{user_id}
     SQL
   end
 end
