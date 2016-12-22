@@ -10,6 +10,8 @@ class OrderFeedbackController < ApplicationController
     else
       @order_items = []
     end
+
+    @user_ratable = current_user.ratable?(@order.id)
   end
 
   private
