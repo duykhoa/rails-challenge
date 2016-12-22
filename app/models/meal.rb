@@ -6,10 +6,10 @@ class Meal < ActiveRecord::Base
       inner join order_items oi on r.ratable_id = oi.id
       inner join meals m on m.id = oi.meal_id
       where ratable_type = 'order_item'
-      group by m.meal_name
+      group by m.id
     SQL
 
-    result = Meal.find_by_sql sql
+    result = self.find_by_sql sql
 
     result.each do |meal|
       self.update(meal.id, rate_point: meal.rate_point)
