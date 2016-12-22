@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :orders
 
-  def ratable?(order_id, user_id)
-    r = User.find_by_sql ratable_sql(order_id, user_id)
+  def ratable?(order_id)
+    r = User.find_by_sql ratable_sql(order_id, self.id)
     r[0][:result] == "true"
   end
 
