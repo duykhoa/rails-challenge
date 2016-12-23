@@ -1,6 +1,10 @@
 class RatesController < ApplicationController
   before_action :authenticate_user!
 
+  # Create rate & comment
+  #
+  # TODO Check user permission for order, order item and delivery before calling rating
+  # and delivery
   def create
     rating = Rating.new(rating_model_klass: Rate)
     rating.rate(rate_params)

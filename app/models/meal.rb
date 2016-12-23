@@ -1,4 +1,23 @@
 class Meal < ActiveRecord::Base
+  # Public: Update Meal rate point base on rate
+  # It is used in the RateUpdateJob
+  #
+  # Example
+  #
+  #   Meal.update_rate_point
+  #
+  # TODO:
+  #
+  # - There is a problem with #find_by_sql, the result can't be saved.
+  #   May check on Rails community for the issue.
+  #
+  #   E.g.
+  #
+  #     result = self.find_by_sql sql
+  #     result.each do |dlv|
+  #       dlv.save!
+  #     end
+  # - This code is duplicated on Delivery model.
   def self.update_rate_point
     sql = <<-SQL
       select m.id, avg(r.point) as rate_point
