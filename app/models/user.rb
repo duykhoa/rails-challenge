@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
           else 'false'
         end as result
       from rates r
-      inner join order_items oi on oi.id = r.ratable_id and r.ratable_type = "order_item"
+      inner join order_items oi on oi.id = r.ratable_id and r.ratable_type = "OrderItem"
       inner join orders ord on oi.order_id = ord.id
       inner join users u on u.id = ord.user_id
       where ord.id = #{order_id} and ord.user_id = #{user_id}

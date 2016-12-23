@@ -7,7 +7,7 @@ class Delivery < ActiveRecord::Base
       select d.id, avg(r.point) as rate_point
       from rates r
       inner join deliveries d on d.id = r.ratable_id
-      where ratable_type = 'delivery'
+      where ratable_type = 'Delivery'
       group by d.id
     SQL
 

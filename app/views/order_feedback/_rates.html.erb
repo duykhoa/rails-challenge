@@ -46,7 +46,7 @@
 <% end %>
 
 <div>
-  Delivery service
+  <b>Delivery service</b>
   <input
     name="delivery[<%= @delivery.id%>]" class="rating rating-loading"
     data-min="0" data-max="5" data-step="1" value="<%= @delivery.rate_point %>"
@@ -65,10 +65,10 @@
   <% if !@delivery.comment && @user_ratable %>
     <div class="form-group">
       Comment:
-      <input
+      <textarea
         name="comment[delivery][<%=@delivery.id%>]"
         class="form-control"
-      />
+      ></textarea>
     </div>
   <%end%>
 </div>

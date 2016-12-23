@@ -5,7 +5,7 @@ class Meal < ActiveRecord::Base
       from rates r
       inner join order_items oi on r.ratable_id = oi.id
       inner join meals m on m.id = oi.meal_id
-      where ratable_type = 'order_item'
+      where ratable_type = 'OrderItem'
       group by m.id
     SQL
 
