@@ -16,7 +16,7 @@ class OrderFeedbackController < ApplicationController
     @delivery = @order.delivery
 
     if @order
-      @order_items = @order.order_items.includes(:meal, :comments)
+      @order_items = @order.order_items.includes(:meal, :comment)
     else
       @order_items = []
     end
