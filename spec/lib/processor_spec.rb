@@ -5,6 +5,7 @@ describe Processor do
     def perform; @executed = true; end;
     def executed?; @executed; end;
   end
+
   class FakeIO
     @@output = ""
 
@@ -16,7 +17,6 @@ describe Processor do
       @@output << val
     end
   end
-
 
   it "can add jobs" do
     processor = Processor.new
@@ -49,6 +49,24 @@ describe Processor do
     t.kill
     sleep 0.05
     expect(t.stop?).to be true
+  end
+
+  it "can kill by sending INT signal" do
+    fork do
+      processor = Processor.new(daemon: true)
+      processor.start
+      Process.kill("INT", processor.pid)
+      expect(processor.shutdown?).to be true
+    end
+  end
+
+  it "can kill by sending TERM signal" do
+    fork do
+      processor = Processor.new(daemon: true)
+      processor.start
+      Process.kill("TERM", processor.pid)
+      expect(processor.shutdown?).to be true
+    end
   end
 
   describe "prehooks" do
