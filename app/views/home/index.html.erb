@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-info content">
+        <div class="panel-heading">
+          <h3 class="panel-title">Hello World!</h3>
+        </div>
+        <div class="panel-body">
+          <% if user_signed_in? %>
+            <h5>Hello <%= current_user.email%>!</h5>
+          <%end%>
+          <p>
+            Here is the steps to use this app
+          </p>
+          <ol>
+            <li>
+              You will need to login. Here is the link
+              <%= link_to "Login", new_user_session_path %>.
+              If you did, skip it.
+            </li>
+
+            <li>
+              Visit order feedback page <u>/order/:id/feedback</u>
+              <br></br>
+              <b>Tips:</b> when you run <pre>rake db:seed</pre> You will see the order id was created
+              <p>We have these order id(s): <%= Order.pluck(:id).join %></p>
+            </li>
+
+            <li>
+              To update the rates for meal and delivery, open a new tab in terminal and run
+              <pre>rake processor:start</pre>
+            </li>
+          </ol>
+
+          <i>Thanks for reading. Merry Christmas!</i>
+
+          <p class="text-right">Kevin Tran.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
