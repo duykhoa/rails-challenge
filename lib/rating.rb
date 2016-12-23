@@ -1,6 +1,4 @@
 class Rating
-  class ParamerterException < StandardError;end
-
   def initialize(options = {})
     @rating_model_klass = options[:rating_model_klass] || Object
   end
