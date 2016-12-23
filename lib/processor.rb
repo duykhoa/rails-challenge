@@ -1,5 +1,5 @@
 class Processor
-  INTERVAL_TIME = 5.freeze
+  INTERVAL_TIME = 2.freeze
 
   def initialize(options = {})
     @daemon = options[:daemon] || false

@@ -20,4 +20,60 @@ describe Processor do
 
     expect(job.executed?).to be true
   end
+
+  it "can pass a list options" do
+    processor = Processor.new({fork_per_job: true, daemon: false})
+  end
+
+  it "can start" do
+    t = Thread.new do
+      processor = Processor.new
+      job = DumbJob.new
+      processor.add_job(job)
+      processor.start
+    end
+
+    expect(t.stop?).to be false
+    t.kill
+    sleep 0.05
+    expect(t.stop?).to be true
+  end
+
+  describe "prehooks" do
+    it "return empty array" do
+      processor = Processor.new
+      expect(processor.prehooks).to eq []
+    end
+
+    it "can add more hook" do
+      processor = Processor.new
+      hook = lambda { true }
+      expect { processor.prehooks << hook }.not_to raise_error
+    end
+
+    it "execute" do
+      processor = Processor.new
+
+      class FakeIO
+        @@output = ""
+
+        def self.to_s
+          @@output
+        end
+
+        def self.<<(val)
+          @@output << val
+        end
+      end
+
+      hook = lambda do
+        FakeIO << "runned"
+      end
+
+      processor.prehooks << hook
+      processor.prehooks_execute
+
+      expect(FakeIO.to_s).to eq("runned")
+    end
+  end
 end
