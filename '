@@ -1,5 +1,4 @@
 class Processor
-  # Public: Integer number of seconds to wait until next processor's circle
   INTERVAL_TIME = 2.freeze
 
   def initialize(options = {})
@@ -83,12 +82,6 @@ class Processor
     end
   end
 
-  # Internal: The interval process
-  #   In every circle, this method:
-  #
-  #   - Checks if shutdown flag is turned on
-  #   - Run the given block
-  #   - Wait until next circle
   def interval(&block)
     loop do
       break if @shutdown
@@ -98,8 +91,6 @@ class Processor
     end
   end
 
-  # Internal: Fork a child process to execute the given block
-  #   Wait until the child process finished, then return
   def fork_per_job(&block)
     return nil unless block
 
