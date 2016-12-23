@@ -1,5 +1,5 @@
 class Processor
-  INTERVAL_TIME = 5.freeze
+  INTERVAL_TIME = 2.freeze
 
   def initialize(options = {})
     @daemon = options[:daemon] || false
@@ -67,11 +67,19 @@ class Processor
     @shutdown = true
   end
 
+  def shutdown?
+    @shutdown
+  end
+
   def prehooks_execute
     prehooks.map(&:call)
   end
 
   def prehooks
     @prehooks ||= []
+  end
+
+  def pid
+    Process.pid
   end
 end
