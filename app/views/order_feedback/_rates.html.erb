@@ -1,7 +1,20 @@
 <% @order_items.each do |order_item| -%>
   <div>
-    <%= order_item.meal_name%>
-    Quantity: <%= order_item.qty%>
+    <div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="text-left">
+            <b><%= order_item.meal_name%></b>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="text-right">
+            Quantity: <%= order_item.qty%>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div>
       <input
         name="order_item[<%=order_item.id%>]" class="rating rating-loading"
@@ -21,14 +34,15 @@
       <% if !order_item.comment && @user_ratable %>
         <div class="form-group">
           Comment:
-          <input
+          <textarea
             name="comment[order_item][<%=order_item.id%>]"
             class="form-control"
-          />
+          ></textarea>
         </div>
       <%end%>
     </div>
   </div>
+  <hr></hr>
 <% end %>
 
 <div>
