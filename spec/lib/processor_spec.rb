@@ -5,6 +5,18 @@ describe Processor do
     def perform; @executed = true; end;
     def executed?; @executed; end;
   end
+  class FakeIO
+    @@output = ""
+
+    def self.to_s
+      @@output
+    end
+
+    def self.<<(val)
+      @@output << val
+    end
+  end
+
 
   it "can add jobs" do
     processor = Processor.new
@@ -53,18 +65,6 @@ describe Processor do
 
     it "execute" do
       processor = Processor.new
-
-      class FakeIO
-        @@output = ""
-
-        def self.to_s
-          @@output
-        end
-
-        def self.<<(val)
-          @@output << val
-        end
-      end
 
       hook = lambda do
         FakeIO << "runned"
