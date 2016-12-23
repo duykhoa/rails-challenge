@@ -1,7 +1,20 @@
 <% @order_items.each do |order_item| -%>
   <div>
-    <%= order_item.meal_name%>
-    Quantity: <%= order_item.qty%>
+    <div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="text-left">
+            <b><%= order_item.meal_name%></b>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="text-right">
+            Quantity: <%= order_item.qty%>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div>
       <input
         name="order_item[<%=order_item.id%>]" class="rating rating-loading"
@@ -10,12 +23,30 @@
         data-ratable_id=1 data-ratable_type="order_item"
         data-display-only="<%= !@user_ratable %>"
       >
+
+      <% if order_item.comment %>
+        <div>
+          Comment:
+          <%= order_item.comment.content %>
+        </div>
+      <% end %>
+
+      <% if !order_item.comment && @user_ratable %>
+        <div class="form-group">
+          Comment:
+          <textarea
+            name="comment[order_item][<%=order_item.id%>]"
+            class="form-control"
+          ></textarea>
+        </div>
+      <%end%>
     </div>
   </div>
-<% end -%>
+  <hr></hr>
+<% end %>
 
 <div>
-  Delivery service
+  <b>Delivery service</b>
   <input
     name="delivery[<%= @delivery.id%>]" class="rating rating-loading"
     data-min="0" data-max="5" data-step="1" value="<%= @delivery.rate_point %>"
@@ -23,4 +54,21 @@
     data-ratable_id="<%= @delivery.id %>" data-ratable_type="delivery"
     data-display-only="<%= !@user_ratable %>"
   >
+
+  <% if @delivery.comment %>
+    <div>
+      Comment:
+      <%= @delivery.comment.content %>
+    </div>
+  <% end %>
+
+  <% if !@delivery.comment && @user_ratable %>
+    <div class="form-group">
+      Comment:
+      <textarea
+        name="comment[delivery][<%=@delivery.id%>]"
+        class="form-control"
+      ></textarea>
+    </div>
+  <%end%>
 </div>

@@ -1,12 +1,13 @@
 class Delivery < ActiveRecord::Base
   has_many :rates, as: :ratable
+  has_one :comment, as: :commentable
 
   def self.update_rate_point
     sql = <<-SQL
       select d.id, avg(r.point) as rate_point
       from rates r
       inner join deliveries d on d.id = r.ratable_id
-      where ratable_type = 'delivery'
+      where ratable_type = 'Delivery'
       group by d.id
     SQL
 

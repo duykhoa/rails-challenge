@@ -6,9 +6,13 @@ class User < ActiveRecord::Base
 
   has_many :orders
 
-  def ratable?(order_id, user_id)
-    r = User.find_by_sql ratable_sql(order_id)
+  def ratable?(order_id)
+    r = User.find_by_sql ratable_sql(order_id, self.id)
     r[0][:result] == "true"
+  end
+
+  def own?(order_id)
+    !!self.orders.find_by_id(order_id)
   end
 
   private
@@ -22,10 +26,10 @@ class User < ActiveRecord::Base
           else 'false'
         end as result
       from rates r
-      inner join order_items oi on oi.id = r.ratable_id and r.ratable_type = "order_item"
-      inner join orders  ord on oi.order_id = ord.id
+      inner join order_items oi on oi.id = r.ratable_id and r.ratable_type = "OrderItem"
+      inner join orders ord on oi.order_id = ord.id
       inner join users u on u.id = ord.user_id
-      where ord.id = #{order_id} and u.id = user_id
+      where ord.id = #{order_id} and ord.user_id = #{user_id}
     SQL
   end
 end

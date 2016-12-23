@@ -24,7 +24,7 @@ log("Create users")
   "admin@grain.sg",
 ].each { |email| User.create(email: email, password: 'grain_sg1234') }
 
-order = Order.create(user: User.first)
+order = Order.create(user: User.find_by_email("admin@grain.sg"))
 
 log("Create Order, id #{order.id}")
 
